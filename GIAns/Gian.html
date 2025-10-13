@@ -4,47 +4,79 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="gian.css">
+    <!-- Links from your original HTML -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <!-- Font Awesome is REQUIRED for the social media icons (fab class) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>My Portfolio </title>
-    
 </head>
 
 <body class="vid">
-        <video autoplay muted loop playinine>
-            <source src="wow.mp4" type="video/mp4">
-        </video>> 
+    <!-- Fixed the closing tag syntax error here -->
+    <video autoplay muted loop playsinline>
+        <source src="wow.mp4" type="video/mp4">
+    </video> 
+    
     <header class="header">
         <a href="#" class="logo">MY PORTFOLIO</a>
         <nav class="navbar">
-            <a href="#">Home</a>
+            <a href="#" class="active">Home</a>
             <a href="#">About</a>
             <a href="#">Gallery</a>
             <a href="#">Contact</a>
         </nav>
     </header>
     
+    <section class="home">
+        <div class="home-content">
+            <!-- Layout of the text is preserved as requested -->
+            <h1>Hello, I'm Gian Albert</h1>
+            <h3>INTERN STUDENT</h3>
+            <p>
+                <b> and eager-to-learn. Possesses a strong work
+                    ethic, excellent communication skills, and a positive
+                    attitude. Quick learner, adaptable to new environments,
+                    and committed to providing excellent service.
+                    Ready to contribute to a positive team environment and
+                    learn from experienced professionals.
+                </b>
+            </p>
+            <div class="btn-box">
+                <a href="#">Show more...</a>
+            </div>
+        </div>
 
-        
-<section class="home">
-  <div class="home-content">
-    <h1>Hello, I'm Gian Albert</h1>
-    <h3>INTERN STUDENT</h3>
-    <p>
-      <b> and eager-to-learn. Possesses a strong work
- ethic, excellent communication skills, and a positive
- attitude.  Quick learner, adaptable to new environments,
- and committed to providing excellent service.
- Ready to contribute to a positive teaustomem environment and
- learn from experienced professionals.</b>
-    </p>
-    <div class="btn-box">
-      <a href="#">Show more...</a>
-     
-    </div>
-  </div>
+        <!-- NEW: Social Orbit Wrapper containing both the icons and the profile picture -->
+        <div class="social-orbit-wrapper">
 
-  
-  <div class="profile-pic">
-    <img src="gianpic.jpg">
-  </div>
- 
+            <!-- Profile Picture (Positioned absolutely over the orbit center) -->
+            <div class="profile-pic">
+                <img src="gianpic.jpg" alt="Profile Picture of Gian Albert">
+            </div>
+
+            <!-- Orbiting Icons Container (The ring of motion) -->
+            <div id="orbit-center" class="orbit-container">
+
+                <!-- TikTok Icon (Using <a> for clickable links) -->
+                <a href="#" id="tiktok-icon" class="icon-item"><i class="fab fa-tiktok"></i></a>
+
+                <!-- Instagram Icon -->
+                <a href="#" id="instagram-icon" class="icon-item"><i class="fab fa-instagram"></i></a>
+
+                <!-- Facebook Icon -->
+                <a href="#" id="facebook-icon" class="icon-item"><i class="fab fa-facebook-f"></i></a>
+
+                <!-- Twitter (X) Icon -->
+                <a href="#" id="twitter-icon" class="icon-item"><i class="fab fa-x-twitter"></i></a>
+
+                <!-- Viber Icon -->
+                <a href="#" id="viber-icon" class="icon-item"><i class="fab fa-viber"></i></a>
+
+                <!-- Center point indicator -->
+                <div class="center-indicator"></div>
+
+            </div>
+        </div>
+    </section>
+</body>
+</html>

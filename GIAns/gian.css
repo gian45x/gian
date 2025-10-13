@@ -1,9 +1,14 @@
+/* 1. GLOBAL RESET & FONT */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    /* Added Poppins import here since it was in the snippet but not the rules */
     font-family: 'Poppins', sans-serif;
 }
+
+/* Imported Poppins font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 body {
     background-color: #000; 
@@ -70,10 +75,10 @@ body {
 .navbar a.active {
     color: rgb(117, 183, 236);
     text-shadow: 
-        0 0 18px skyblue,                  
-        0 0 40px rgb(0, 191, 255),         
-        0 0 60px rgba(0, 191, 255, 0.8),   
-        0 0 80px rgba(0, 191, 255, 0.5);   
+        0 0 18px skyblue, 
+        0 0 40px rgb(0, 191, 255), 
+        0 0 60px rgba(0, 191, 255, 0.8), 
+        0 0 80px rgba(0, 191, 255, 0.5); 
     transform: translateY(-2px); 
     letter-spacing: 1.5px; 
 }
@@ -183,13 +188,22 @@ body {
 }
 
 /* 6. PROFILE PICTURE */
+/* NOTE: Profile picture positioning is changed to absolute to center it within the orbit area */
 .profile-pic {
-    flex-shrink: 0;
+    /* Kept original transition */
     transition: transform 0.5s ease-in-out;
+    
+    /* NEW Positioning within the .social-orbit-wrapper */
+    position: absolute; 
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 5; /* Z-index to layer it above the orbit path */
 }
 
 .profile-pic:hover {
-    transform: rotate(3deg); 
+    /* Adjusted hover transform to include the initial centering transform */
+    transform: translate(-50%, -50%) rotate(3deg); 
 }
 
 .profile-pic img {
@@ -219,7 +233,7 @@ body {
     text-shadow: 0 0 12px rgba(117, 183, 236, 0.9); 
 }
 
-/* 8. CONTAINER */
+/* 8. CONTAINER (Existing) */
 .container {
     width: 80%;
     height: 400px;
@@ -235,4 +249,137 @@ body {
     padding: 15px 20px;
     border-radius: 10px;
     display: inline-block;
+}
+
+/* ---------------------------------------------------- */
+/* 9. SOCIAL ORBIT & GLOW EFFECTS (MERGED) */
+/* ---------------------------------------------------- */
+
+/* New wrapper to contain both the orbit and the profile pic */
+.social-orbit-wrapper {
+    position: relative;
+    width: 500px; /* Increased size for larger orbit path */
+    height: 500px; /* Increased size for larger orbit path */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Orbit Animations */
+@keyframes orbit { /* Container rotates clockwise */
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes reverse-orbit { /* Icons rotate counter-clockwise to stay upright */
+    from { transform: rotate(0deg); }
+    to { transform: rotate(-360deg); }
+}
+
+/* Brand Color Glow Animations (Pulsating) */
+@keyframes tiktok-glow {
+    0% { box-shadow: 0 0 10px #fe2c55; }
+    50% { box-shadow: 0 0 30px #fe2c55, 0 0 60px rgba(254, 44, 85, 0.7); }
+    100% { box-shadow: 0 0 10px #fe2c55; }
+}
+
+@keyframes insta-glow {
+    0% { box-shadow: 0 0 10px #e1306c; }
+    50% { box-shadow: 0 0 30px #e1306c, 0 0 60px rgba(225, 48, 108, 0.7); }
+    100% { box-shadow: 0 0 10px #e1306c; }
+}
+
+@keyframes fb-glow {
+    0% { box-shadow: 0 0 10px #1877f2; }
+    50% { box-shadow: 0 0 30px #1877f2, 0 0 60px rgba(24, 119, 242, 0.7); }
+    100% { box-shadow: 0 0 10px #1877f2; }
+}
+
+@keyframes twitter-glow {
+    0% { box-shadow: 0 0 10px #ffffff; }
+    50% { box-shadow: 0 0 30px #ffffff, 0 0 60px rgba(255, 255, 255, 0.7); }
+    100% { box-shadow: 0 0 10px #ffffff; }
+}
+
+@keyframes viber-glow {
+    0% { box-shadow: 0 0 10px #7360f2; }
+    50% { box-shadow: 0 0 30px #7360f2, 0 0 60px rgba(115, 96, 242, 0.7); }
+    100% { box-shadow: 0 0 10px #7360f2; }
+}
+
+/* The main container drives the circular motion */
+.orbit-container {
+    width: 500px; /* Increased size to match wrapper */
+    height: 500px; /* Increased size to match wrapper */
+    position: relative;
+    animation: orbit 30s linear infinite; 
+    transform-style: preserve-3d;
+}
+
+/* Styling for the individual icons (now anchor tags for links) */
+.icon-item {
+    position: absolute;
+    width: 60px; /* Slightly adjusted size for better fit */
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(31, 41, 55, 0.7);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    text-decoration: none;
+    z-index: 4; /* Below profile pic, above background */
+}
+
+.icon-item i {
+    font-size: 2rem;
+    text-shadow: 0 0 15px currentColor;
+}
+
+/* Positioning and Animations */
+.icon-item {
+    transform: translate(-50%, -50%); /* Centering relative to coordinates */
+}
+
+/* Symmetrical 5-Point Icon Positioning (72 degrees separation) */
+#tiktok-icon { top: 0%; left: 50%; animation: reverse-orbit 30s linear infinite, tiktok-glow 3s infinite alternate; }
+#instagram-icon { top: 34.5%; left: 97.5%; animation: reverse-orbit 30s linear infinite, insta-glow 3.5s infinite alternate; }
+#facebook-icon { top: 90.5%; left: 79.5%; animation: reverse-orbit 30s linear infinite, fb-glow 2.8s infinite alternate; }
+#twitter-icon { top: 90.5%; left: 20.5%; animation: reverse-orbit 30s linear infinite, twitter-glow 3.2s infinite alternate; }
+#viber-icon { top: 34.5%; left: 2.5%; animation: reverse-orbit 30s linear infinite, viber-glow 4s infinite alternate; }
+
+/* Apply specific brand colors to icon content */
+#tiktok-icon i { color: #fe2c55; }
+#instagram-icon i { color: #e1306c; }
+#facebook-icon i { color: #1877f2; }
+#twitter-icon i { color: #ffffff; }
+#viber-icon i { color: #7360f2; }
+
+/* Specific Hover Glow Overrides */
+.icon-item:hover {
+    animation: none; /* Stop the pulsing animation */
+    /* Intense glow and slight scale */
+    box-shadow: 0 0 50px currentColor, 0 0 100px currentColor; 
+    transform: translate(-50%, -50%) scale(1.15); 
+}
+
+#tiktok-icon:hover { box-shadow: 0 0 50px #fe2c55, 0 0 100px #fe2c55; }
+#instagram-icon:hover { box-shadow: 0 0 50px #e1306c, 0 0 100px #e1306c; }
+#facebook-icon:hover { box-shadow: 0 0 50px #1877f2, 0 0 100px #1877f2; }
+#twitter-icon:hover { box-shadow: 0 0 50px #ffffff, 0 0 100px #ffffff; }
+#viber-icon:hover { box-shadow: 0 0 50px #7360f2, 0 0 100px #7360f2; }
+
+.center-indicator {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background-color: #ffffff;
+    opacity: 0.2;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 20px #fff;
+    z-index: 3;
 }
