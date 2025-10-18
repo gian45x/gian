@@ -1,20 +1,22 @@
-/* 1. GLOBAL RESET & FONT */
+/* =========================================================
+   1. GLOBAL RESET & FONT
+========================================================= */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    /* Added Poppins import here since it was in the snippet but not the rules */
     font-family: 'Poppins', sans-serif;
 }
 
-/* Imported Poppins font */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 body {
-    background-color: #000; 
+    background-color: #000;
 }
 
-/* 2. VIDEO BACKGROUND */
+/* =========================================================
+   2. VIDEO BACKGROUND
+========================================================= */
 .vid {
     position: relative;
     width: 100%;
@@ -31,27 +33,29 @@ body {
     transform: translate(-50%, -50%);
     object-fit: cover;
     z-index: -1;
-    filter: brightness(0.7); 
+    filter: brightness(0.7);
 }
 
-/* 3. HEADER & NAVBAR */
+/* =========================================================
+   3. HEADER & NAVBAR
+========================================================= */
 .header {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     padding: 20px 10%;
-    background-color: rgba(0, 0, 0, 0.3); 
+    background-color: rgba(0, 0, 0, 0.3);
     display: flex;
     justify-content: space-between;
     align-items: center;
     z-index: 100;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
 .logo {
     font-size: 30px;
-    color: rgb(242, 240, 255); 
+    color: rgb(242, 240, 255);
     text-decoration: none;
     font-weight: 600;
 }
@@ -68,22 +72,24 @@ body {
     text-decoration: none;
     font-weight: 500;
     margin-left: 35px;
-    transition: 0.4s ease-in-out; 
+    transition: 0.4s ease-in-out;
 }
 
 .navbar a:hover,
 .navbar a.active {
     color: rgb(117, 183, 236);
-    text-shadow: 
-        0 0 18px skyblue, 
-        0 0 40px rgb(0, 191, 255), 
-        0 0 60px rgba(0, 191, 255, 0.8), 
-        0 0 80px rgba(0, 191, 255, 0.5); 
-    transform: translateY(-2px); 
-    letter-spacing: 1.5px; 
+    text-shadow:
+        0 0 18px skyblue,
+        0 0 40px rgb(0, 191, 255),
+        0 0 60px rgba(0, 191, 255, 0.8),
+        0 0 80px rgba(0, 191, 255, 0.5);
+    transform: translateY(-2px);
+    letter-spacing: 1.5px;
 }
 
-/* 4. HOME SECTION */
+/* =========================================================
+   4. HOME SECTION
+========================================================= */
 .home {
     height: 100vh;
     display: flex;
@@ -91,7 +97,7 @@ body {
     align-items: center;
     padding: 0 10%;
     gap: 50px;
-    position: relative; 
+    position: relative;
     z-index: 2;
 }
 
@@ -103,7 +109,7 @@ body {
 .home-content h1 {
     font-size: 57px;
     font-weight: 700;
-    background: linear-gradient(90deg, #ffffff 10%, #00aeff 100%); 
+    background: linear-gradient(90deg, #ffffff 10%, #00aeff 100%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -121,11 +127,13 @@ body {
     font-size: 16px;
     font-weight: 500;
     color: white;
-    margin: 15px 0 30px; 
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); 
+    margin: 15px 0 30px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
 }
 
-/* 5. BUTTONS (BTN-BOX) */
+/* =========================================================
+   5. BUTTONS (BTN-BOX)
+========================================================= */
 .home-content .btn-box {
     margin-top: 30px;
     display: flex;
@@ -145,14 +153,14 @@ body {
     border-radius: 10px;
     color: white;
     overflow: hidden;
-    z-index: 1; 
+    z-index: 1;
     transition: 0.5s ease-in-out;
 }
 
 .btn-box a:nth-child(1) {
     background-color: rgb(78, 121, 240);
     border: 2px solid rgb(0, 243, 252);
-    box-shadow: 0 0 10px rgba(0, 243, 252, 0.5); 
+    box-shadow: 0 0 10px rgba(0, 243, 252, 0.5);
 }
 
 .btn-box a:nth-child(2) {
@@ -166,44 +174,41 @@ body {
     position: absolute;
     top: 0;
     left: 0;
-    width: 0; 
+    width: 0;
     height: 100%;
-    background: rgb(0, 243, 252); 
-    z-index: -1; 
-    transition: width 0.5s ease-in-out; 
+    background: rgb(0, 243, 252);
+    z-index: -1;
+    transition: width 0.5s ease-in-out;
 }
 
 .btn-box a:hover {
-    transform: scale(1.05); 
-    box-shadow: 0 0 25px rgba(0, 243, 252, 0.8); 
-    color: #1a1a1a; 
+    transform: scale(1.05);
+    box-shadow: 0 0 25px rgba(0, 243, 252, 0.8);
+    color: #1a1a1a;
 }
 
 .btn-box a:hover::before {
-    width: 100%; 
+    width: 100%;
 }
 
 .btn-box a:nth-child(2):hover {
-    color: #1a1a1a; 
+    color: #1a1a1a;
 }
 
-/* 6. PROFILE PICTURE */
-/* NOTE: Profile picture positioning is changed to absolute to center it within the orbit area */
+/* =========================================================
+   6. PROFILE PICTURE
+========================================================= */
 .profile-pic {
-    /* Kept original transition */
-    transition: transform 0.5s ease-in-out;
-    
-    /* NEW Positioning within the .social-orbit-wrapper */
-    position: absolute; 
+    position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 5; /* Z-index to layer it above the orbit path */
+    z-index: 5;
+    transition: transform 0.5s ease-in-out;
 }
 
 .profile-pic:hover {
-    /* Adjusted hover transform to include the initial centering transform */
-    transform: translate(-50%, -50%) rotate(3deg); 
+    transform: translate(-50%, -50%) rotate(3deg);
 }
 
 .profile-pic img {
@@ -212,28 +217,32 @@ body {
     border-radius: 50%;
     border: 6px solid skyblue;
     object-fit: cover;
-    box-shadow: 0 0 35px rgba(135, 235, 213, 0.8), 0 0 15px skyblue; 
+    box-shadow: 0 0 35px rgba(135, 235, 213, 0.8), 0 0 15px skyblue;
 }
 
-/* 7. CUSTOM LINK EFFECT ('Show More' Link) */
+/* =========================================================
+   7. CUSTOM LINK EFFECT ('Show More' Link)
+========================================================= */
 .show-more-link {
     display: inline-block;
     font-size: 17px;
     font-weight: 600;
     text-decoration: none;
-    color: rgb(200, 230, 255); 
+    color: rgb(200, 230, 255);
     margin-left: 5px;
-    transition: 0.4s ease-in-out; 
+    transition: 0.4s ease-in-out;
 }
 
 .show-more-link:hover {
-    color: rgb(117, 183, 236); 
-    transform: scale(1.05) translateY(-1px); 
-    letter-spacing: 1.2px; 
-    text-shadow: 0 0 12px rgba(117, 183, 236, 0.9); 
+    color: rgb(117, 183, 236);
+    transform: scale(1.05) translateY(-1px);
+    letter-spacing: 1.2px;
+    text-shadow: 0 0 12px rgba(117, 183, 236, 0.9);
 }
 
-/* 8. CONTAINER (Existing) */
+/* =========================================================
+   8. CONTAINER
+========================================================= */
 .container {
     width: 80%;
     height: 400px;
@@ -241,7 +250,7 @@ body {
     border-radius: 20px;
     overflow: hidden;
     position: relative;
-    background-color: rgba(0, 0, 0, 0.6); 
+    background-color: rgba(0, 0, 0, 0.6);
 }
 
 .con {
@@ -251,32 +260,30 @@ body {
     display: inline-block;
 }
 
-/* ---------------------------------------------------- */
-/* 9. SOCIAL ORBIT & GLOW EFFECTS (MERGED) */
-/* ---------------------------------------------------- */
-
-/* New wrapper to contain both the orbit and the profile pic */
+/* =========================================================
+   9. SOCIAL ORBIT & GLOW EFFECTS
+========================================================= */
 .social-orbit-wrapper {
     position: relative;
-    width: 500px; /* Increased size for larger orbit path */
-    height: 500px; /* Increased size for larger orbit path */
+    width: 500px;
+    height: 500px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-/* Orbit Animations */
-@keyframes orbit { /* Container rotates clockwise */
+/* Orbit animation */
+@keyframes orbit {
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
 }
 
-@keyframes reverse-orbit { /* Icons rotate counter-clockwise to stay upright */
+@keyframes reverse-orbit {
     from { transform: rotate(0deg); }
     to { transform: rotate(-360deg); }
 }
 
-/* Brand Color Glow Animations (Pulsating) */
+/* Glow animations for idle pulse */
 @keyframes tiktok-glow {
     0% { box-shadow: 0 0 10px #fe2c55; }
     50% { box-shadow: 0 0 30px #fe2c55, 0 0 60px rgba(254, 44, 85, 0.7); }
@@ -307,29 +314,29 @@ body {
     100% { box-shadow: 0 0 10px #7360f2; }
 }
 
-/* The main container drives the circular motion */
 .orbit-container {
-    width: 500px; /* Increased size to match wrapper */
-    height: 500px; /* Increased size to match wrapper */
+    width: 500px;
+    height: 500px;
     position: relative;
-    animation: orbit 30s linear infinite; 
+    animation: orbit 30s linear infinite;
     transform-style: preserve-3d;
 }
 
-/* Styling for the individual icons (now anchor tags for links) */
+/* Base icon style */
 .icon-item {
     position: absolute;
-    width: 60px; /* Slightly adjusted size for better fit */
+    width: 60px;
     height: 60px;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 50%;
     background: rgba(31, 41, 55, 0.7);
-    transition: all 0.3s ease;
-    cursor: pointer;
     text-decoration: none;
-    z-index: 4; /* Below profile pic, above background */
+    cursor: pointer;
+    z-index: 4;
+    transition: all 0.3s ease;
+    transform: translate(-50%, -50%);
 }
 
 .icon-item i {
@@ -337,38 +344,60 @@ body {
     text-shadow: 0 0 15px currentColor;
 }
 
-/* Positioning and Animations */
-.icon-item {
-    transform: translate(-50%, -50%); /* Centering relative to coordinates */
-}
-
-/* Symmetrical 5-Point Icon Positioning (72 degrees separation) */
+/* Positioning (72° apart) */
 #tiktok-icon { top: 0%; left: 50%; animation: reverse-orbit 30s linear infinite, tiktok-glow 3s infinite alternate; }
 #instagram-icon { top: 34.5%; left: 97.5%; animation: reverse-orbit 30s linear infinite, insta-glow 3.5s infinite alternate; }
 #facebook-icon { top: 90.5%; left: 79.5%; animation: reverse-orbit 30s linear infinite, fb-glow 2.8s infinite alternate; }
 #twitter-icon { top: 90.5%; left: 20.5%; animation: reverse-orbit 30s linear infinite, twitter-glow 3.2s infinite alternate; }
 #viber-icon { top: 34.5%; left: 2.5%; animation: reverse-orbit 30s linear infinite, viber-glow 4s infinite alternate; }
 
-/* Apply specific brand colors to icon content */
+/* Brand colors */
 #tiktok-icon i { color: #fe2c55; }
 #instagram-icon i { color: #e1306c; }
 #facebook-icon i { color: #1877f2; }
 #twitter-icon i { color: #ffffff; }
 #viber-icon i { color: #7360f2; }
 
-/* Specific Hover Glow Overrides */
+/* =========================================================
+   10. ENHANCED GLOW & ZOOM HOVER EFFECT
+========================================================= */
 .icon-item:hover {
-    animation: none; /* Stop the pulsing animation */
-    /* Intense glow and slight scale */
-    box-shadow: 0 0 50px currentColor, 0 0 100px currentColor; 
-    transform: translate(-50%, -50%) scale(1.15); 
+    animation: none;
+    transform: translate(-50%, -50%) scale(1.3);
+    box-shadow:
+        0 0 40px currentColor,
+        0 0 80px currentColor,
+        0 0 120px currentColor,
+        0 0 160px rgba(255, 255, 255, 0.3);
+    transition: all 0.25s ease-in-out;
 }
 
-#tiktok-icon:hover { box-shadow: 0 0 50px #fe2c55, 0 0 100px #fe2c55; }
-#instagram-icon:hover { box-shadow: 0 0 50px #e1306c, 0 0 100px #e1306c; }
-#facebook-icon:hover { box-shadow: 0 0 50px #1877f2, 0 0 100px #1877f2; }
-#twitter-icon:hover { box-shadow: 0 0 50px #ffffff, 0 0 100px #ffffff; }
-#viber-icon:hover { box-shadow: 0 0 50px #7360f2, 0 0 100px #7360f2; }
+.icon-item:active {
+    transform: translate(-50%, -50%) scale(1.45);
+    box-shadow:
+        0 0 70px currentColor,
+        0 0 140px currentColor,
+        0 0 200px rgba(255, 255, 255, 0.6);
+    filter: brightness(1.3);
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+/* Brand-specific hover intensities */
+#tiktok-icon:hover { box-shadow: 0 0 60px #fe2c55, 0 0 120px #fe2c55, 0 0 180px rgba(254, 44, 85, 0.9); }
+#instagram-icon:hover { box-shadow: 0 0 60px #e1306c, 0 0 120px #e1306c, 0 0 180px rgba(225, 48, 108, 0.9); }
+#facebook-icon:hover { box-shadow: 0 0 60px #1877f2, 0 0 120px #1877f2, 0 0 180px rgba(24, 119, 242, 0.9); }
+#twitter-icon:hover { box-shadow: 0 0 60px #ffffff, 0 0 120px #ffffff, 0 0 180px rgba(255, 255, 255, 0.9); }
+#viber-icon:hover { box-shadow: 0 0 60px #7360f2, 0 0 120px #7360f2, 0 0 180px rgba(115, 96, 242, 0.9); }
+
+/* Optional subtle idle breathing pulse */
+@keyframes pulse {
+    0% { transform: translate(-50%, -50%) scale(1); filter: brightness(1); }
+    100% { transform: translate(-50%, -50%) scale(1.1); filter: brightness(1.2); }
+}
+
+.icon-item {
+    animation: pulse 3s ease-in-out infinite alternate;
+}
 
 .center-indicator {
     position: absolute;
