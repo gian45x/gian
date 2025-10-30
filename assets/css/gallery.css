@@ -1,0 +1,199 @@
+/* =========================================================
+   GLOBAL BASE STYLES
+   ========================================================= */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #0A0A0A; /* Near-black for maximum neon contrast */
+    color: #E0F7FA; /* Light cyan text */
+    overflow-x: hidden;
+}
+
+/* --- INTEGRATED USER CSS STARTS HERE --- */
+
+/* =========================================================
+   GALLERY SECTION - CYBER NEON GLOW DESIGN
+   ========================================================= */
+
+/* Header/Title Styling */
+.gallery-title {
+    /* This section has conflicting padding/width properties, simplifying to look like the original image */
+    max-width: 300px;
+    margin: 80px auto; 
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 50px; 
+    padding: 10px 40px; 
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.2); 
+    backdrop-filter: blur(8px); 
+    text-align: center;
+    font-size: 2.5rem; /* Larger font size */
+    font-weight: 800;
+    text-transform: uppercase;
+    color: cyan;
+    text-shadow: 0 0 10px cyan;
+    animation: glowPulse 2s infinite alternate; /* Apply glow animation */
+}
+
+/* Section Background (Used for the main body) */
+.gallery-section {
+    padding: 70px 20px;
+    text-align: center;
+    /* Use a radial gradient for a deep space effect */
+    background: radial-gradient(circle at center, #030b15 0%, #010409 100%);
+    color: #e5e7eb;
+    position: relative;
+    overflow: hidden;
+    min-height: 100vh;
+}
+
+/* Main Container (Not directly used for the grid, but kept for reference) */
+.gallery-container {
+    max-width: 800px;
+    display: none; 
+}
+
+/* 🌟 CHANGE HERE: Set min-width to 180px for a standard thumbnail size 🌟 */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); 
+    gap: 30px;
+    padding: 20px 0;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Gallery Card (The key element for the glow/transition) */
+.gallery-card {
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 20px;
+    overflow: hidden;
+    border: 2px solid rgba(0, 255, 255, 0.3); /* Subtle border */
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.4), inset 0 0 5px rgba(0, 255, 255, 0.6);
+    backdrop-filter: blur(5px);
+    transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.5s ease;
+    padding: 0 15px 20px; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.gallery-card:hover {
+    transform: translateY(-8px) scale(1.02); /* Unique lift and scale transition */
+    box-shadow: 
+        0 15px 30px rgba(0, 255, 255, 0.6), /* Strong lift shadow */
+        0 0 25px cyan, 
+        0 0 50px #00BFFF; /* Intense, lifted glow */
+}
+
+/* IMAGE SIZING FIX FOR 2X2 STANDARD (SQUARE) */
+.gallery-image-wrapper {
+    position: relative;
+    width: 100%;
+    
+    /* Forces the container to a perfect 1:1 aspect ratio (square) */
+    aspect-ratio: 1 / 1; 
+    height: auto; 
+    
+    overflow: hidden;
+    border-radius: 15px;
+    /* Stronger box-shadow on the image itself */
+    box-shadow: 0 0 40px rgba(0, 234, 255, 0.6); 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.gallery-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    /* Scales image to fill the 1:1 container and crops excess */
+    object-fit: cover; 
+    
+    border-radius: 15px;
+    transition: transform 0.5s ease-in-out, opacity 0.4s ease;
+}
+
+.gallery-image-wrapper img:hover {
+    transform: scale(1.05);
+}
+
+/* Neon Buttons (Primary style for all controls) */
+.btn-glow,
+.gallery-controls button {
+    background: transparent;
+    border: 2px solid cyan;
+    color: cyan;
+    font-family: 'Orbitron', sans-serif;
+    padding: 10px 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 0 10px cyan, inset 0 0 10px cyan;
+}
+
+.btn-glow:hover,
+.gallery-controls button:hover {
+    background: cyan;
+    color: #0a0a0a;
+    box-shadow: 0 0 20px cyan, 0 0 30px cyan;
+    transform: translateY(-3px); /* Unique button lift transition */
+}
+
+/* Upload Button Variant */
+.btn-glow.upload {
+    border-color: #00ff99;
+    color: #00ff99;
+    box-shadow: 0 0 10px #00ff99, inset 0 0 10px #00ff99;
+}
+
+.btn-glow.upload:hover {
+    background: #00ff99;
+    color: #0a0a0a;
+    box-shadow: 0 0 25px #00ff99, 0 0 40px #00ff99;
+}
+
+/* Delete Button Variant */
+.btn-glow.delete {
+    border-color: #ff0077;
+    color: #ff0077;
+    box-shadow: 0 0 10px #ff0077, inset 0 0 10px #ff0077;
+}
+
+.btn-glow.delete:hover {
+    background: #ff0077;
+    color: #0a0a0a;
+    box-shadow: 0 0 25px #ff0077, 0 0 40px #ff0077;
+}
+
+/* Glow Animation for Titles */
+@keyframes glowPulse {
+    from {
+        text-shadow: 0 0 10px cyan;
+    }
+    to {
+        text-shadow: 0 0 25px #00eaff, 0 0 40px cyan;
+    }
+}
+
+/* Basic card info styling (adapted for the new card structure) */
+.gallery-info {
+    padding: 10px 0 0;
+    text-align: center;
+}
+
+.gallery-info h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #00FFFF;
+    margin-bottom: 5px;
+}
+
+.gallery-info p {
+    color: #94A3B8;
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+}
