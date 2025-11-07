@@ -1,0 +1,60 @@
+/* CONTACT SECTION CUSTOM STYLES 
+    These styles manage the glow effects and custom shadows 
+    that were previously defined inline in index.php.
+*/
+
+/* --- Heading Glow Effect --- */
+.glow-text {
+    /* Sets the neon glow for the main heading text */
+    text-shadow: 0 0 10px rgba(0, 191, 255, 0.7);
+}
+
+/* --- Input Field Focus Glow --- */
+.input-glow:focus {
+    /* Adds a cyan shadow ring when input fields are focused */
+    box-shadow: 0 0 10px rgba(0, 191, 255, 0.5);
+    outline: none; /* Remove default browser outline */
+}
+
+/* --- Contact Card Hover Glow --- */
+.hover-glow:hover {
+    /* Adds a shadow based on the element's current text/icon color */
+    box-shadow: 0 0 15px currentColor;
+}
+
+/* --- Send Inquiry Button Glow --- */
+.glow-btn {
+    /* Base transitions for the button */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glow-btn:hover {
+    /* Lift and amplify the neon shadow on hover */
+    transform: translateY(-2px);
+    box-shadow: 0 0 30px rgba(0, 191, 255, 1);
+}
+
+/* --- Card Shadow for Form Container --- */
+.contact-shadow {
+    /* Ensures the main form container has a consistent, soft blue glow */
+    box-shadow: 0 0 25px rgba(0, 191, 255, 0.2) !important;
+}
+
+/* Styles for Contact Card Icons (Ensuring consistent glow for card icons)
+    These apply the same text shadow effects used inline previously.
+*/
+
+/* Email Icon (Primary Blue) */
+.contact-card .fa-envelope {
+    text-shadow: 0 0 10px rgba(0, 191, 255, 0.7);
+}
+
+/* Phone Icon (Accent Yellow) */
+.contact-card .fa-phone-alt {
+    text-shadow: 0 0 10px rgba(255, 193, 7, 0.7);
+}
+
+/* Instagram Icon (Pink) */
+.contact-card .fa-instagram {
+    text-shadow: 0 0 10px rgba(236, 72, 153, 0.7);
+}

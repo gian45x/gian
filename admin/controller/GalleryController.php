@@ -29,9 +29,6 @@ switch ($action) {
 
 // --- CRUD FUNCTIONS ---
 
-/**
- * CREATE Function: Handles image upload and database insert.
- */
 function create($gallery)
 {
     // Check for POST request and a valid file upload

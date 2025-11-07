@@ -1,10 +1,7 @@
-/* =========================================================
-    1. GLOBAL RESET & FONT
-========================================================= */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 * {
-    margin: ;
+    margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
@@ -13,138 +10,127 @@
 body {
     background-color: #000;
     scroll-behavior: smooth;
-    overflow-x: hidden; /* Prevent horizontal scroll */
-    min-height: 100vh; /* Ensure it starts full screen */
-    position: relative; /* Base layer for content */
+    overflow-x: hidden;
+    min-height: 100vh;
+    /* FIX: Changed from position: relative to static to ensure normal document flow */
+    position: static; 
+    /* Removed padding-top: 100px; - we will use padding on the first section instead */
 }
 
-/* =========================================================
-    2. VIDEO BACKGROUND (FIXED FOR SCROLLING)
-========================================================= */
+/* --- VIDEO BACKGROUND (Correct) --- */
 .vid {
     position: relative;
     width: 100%;
-    /* height: 100vh; and overflow: hidden; REMOVED to allow scrolling */
 }
-
 .vid video {
-    position: fixed; /* CRITICAL FIX: Fixed to the viewport */
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    z-index: -2; /* Must be below body content */
-    filter: brightness(0.7);
-    /* Removed transform: translate(-50%, -50%); as it is not needed with top:0, left:0, 100% width/height */
+    z-index: -1;
+}
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: -1;
 }
 
-/* =========================================================
-    3. HEADER & NAVBAR
-========================================================= */
-/* --- Floating Header --- */
+/* --- HEADER (Fixed Position is intentional and correct) --- */
 header {
-  position: fixed;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 90%;
-  max-width: 1100px;
-  background: rgba(0, 0, 0, 0.55);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 50px;
-  box-shadow: 0 0 25px rgba(0, 200, 255, 0.4);
-  padding: 18px 40px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  z-index: 1000;
-  transition: all 0.4s ease-in-out;
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 1100px;
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50px;
+    box-shadow: 0 0 25px rgba(0, 200, 255, 0.4);
+    padding: 18px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1000;
+    transition: all 0.4s ease-in-out;
 }
 
 header:hover {
-  box-shadow: 0 0 40px rgba(0, 255, 255, 0.6);
+    box-shadow: 0 0 40px rgba(0, 255, 255, 0.6);
 }
 
-/* --- Navigation links --- */
 header .logo {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #fff;
-  letter-spacing: 1px;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 1px;
 }
 
 header nav a {
-  color: #e5e7eb;
-  margin: 0 15px;
-  font-weight: 500;
-  text-decoration: none;
-  transition: color 0.3s ease;
+    color: #e5e7eb;
+    margin: 0 15px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.3s ease;
 }
 
 header nav a:hover {
-  color: #00e5ff;
+    color: #00e5ff;
 }
 
-/* --- Hidden/minimized header --- */
 header.hidden {
-  transform: translate(-50%, -150%);
-  opacity: 0;
-  pointer-events: none;
+    transform: translate(-50%, -150%);
+    opacity: 0;
+    pointer-events: none;
 }
 
-/* --- Floating Toggle Button --- */
 #headerToggle {
-  position: fixed;
-  top: 25px;
-  right: 30px;
-  width: 45px;
-  height: 45px;
-  border-radius: 50%;
-  border: none;
-  background: rgba(0, 200, 255, 0.8);
-  color: white;
-  font-size: 1.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  z-index: 999;
-  transition: all 0.3s ease;
-  box-shadow: 0 0 20px rgba(0, 200, 255, 0.5);
+    position: fixed;
+    top: 25px;
+    right: 30px;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(0, 200, 255, 0.8);
+    color: white;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 999;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 20px rgba(0, 200, 255, 0.5);
 }
 
 #headerToggle:hover {
-  background: rgba(0, 255, 255, 0.9);
-  transform: scale(1.1);
-  box-shadow: 0 0 30px rgba(0, 255, 255, 0.7);
+    background: rgba(0, 255, 255, 0.9);
+    transform: scale(1.1);
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.7);
 }
 
-/* --- When header visible, hide button --- */
 #headerToggle.hide {
-  opacity: 0;
-  pointer-events: none;
-  transform: scale(0);
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0);
 }
 
-/* Add spacing below header */
-body {
-  padding-top: 100px;
-}
-
-
-
-
-/* =========================================================
-    4. HOME SECTION
-========================================================= */
+/* --- HOME SECTION --- */
 .home {
-    min-height: 100vh; /* Use min-height so it can expand */
+    min-height: 100vh;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 100px 10% 50px 10%; /* Added top padding to clear fixed header */
+    /* FIX: Increased padding-top to ensure content is below the fixed header */
+    padding: 150px 10% 50px 10%; 
     gap: 50px;
     position: relative;
     z-index: 2;
@@ -180,9 +166,6 @@ body {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
 }
 
-/* =========================================================
-    5. BUTTONS (Show More)
-========================================================= */
 .btn-box {
     margin-top: 30px;
     display: flex;
@@ -234,14 +217,10 @@ body {
     width: 100%;
 }
 
-/* =========================================================
-    6. PROFILE PICTURE
-========================================================= */
 .profile-pic {
-    /* Updated positioning for better responsiveness */
     position: absolute; 
     top: 50%;
-    right: 10%; /* Positioning relative to the home section right side */
+    right: 10%;
     transform: translateY(-50%);
     z-index: 5;
     transition: transform 0.5s ease-in-out;
@@ -260,9 +239,6 @@ body {
     box-shadow: 0 0 35px rgba(135, 235, 213, 0.8), 0 0 15px skyblue;
 }
 
-/* =========================================================
-    7. SOCIAL ORBIT & ICON GLOW
-========================================================= */
 .social-orbit-wrapper {
     position: relative;
     width: 500px;
@@ -270,7 +246,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-left: auto; /* Push to the right */
+    margin-left: auto;
 }
 
 @keyframes orbit {
@@ -313,7 +289,6 @@ body {
     text-shadow: 0 0 15px currentColor;
 }
 
-/* Orbit icon positions */
 #tiktok-icon { top: 0%; left: 50%; color: #fe2c55; animation: reverse-orbit 30s linear infinite; }
 #instagram-icon { top: 34.5%; left: 97.5%; color: #e1306c; animation: reverse-orbit 30s linear infinite; }
 #facebook-icon { top: 90.5%; left: 79.5%; color: #1877f2; animation: reverse-orbit 30s linear infinite; }
@@ -325,24 +300,21 @@ body {
     100% { transform: translate(-50%, -50%) scale(1.1); filter: brightness(1.2); }
 }
 
-/* =========================================================
-    8. ABOUT, GALLERY, CONTACT SECTIONS
-========================================================= */
+/* --- ALL OTHER SECTIONS --- */
 #about, #gallery, #contact {
     padding: 100px 10%;
     text-align: center;
-    background: rgba(10, 10, 10, 0.9); /* Increased opacity for readability */
+    background: rgba(10, 10, 10, 0.9);
     border-top: 1px solid #222;
     z-index: 10;
-    position: relative; /* Ensure sections layer above the video */
-    min-height: 50vh; /* Ensure sections take up space */
+    position: relative; 
+   
 }
 #gallery {
-    padding: 0; /* Gallery content has internal padding */
-    background: transparent; /* Let the gallery-main container handle the dark background */
+    padding: 0;
+    background: transparent;
 }
 
-/* Reveal Animation (applies to all non-home sections) */
 #about, #gallery-main, #contact {
     opacity: 0;
     transform: translateY(50px);
@@ -394,19 +366,15 @@ body {
     box-shadow: 0 0 25px rgba(6, 182, 212, 0.9);
 }
 
-/* =========================================================
-    9. GALLERY SPECIFIC STYLES
-========================================================= */
 #gallery-main {
-    /* Use the space allocated by the parent #gallery section */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     padding-top: 8rem;
     padding-bottom: 5rem;
-    background-color: #0b0f1b; /* Dark background for the gallery section */
-    min-height: 700px;
+    background-color: #0b0f1b;
+
 }
 
 .gallery-image {
@@ -427,7 +395,6 @@ body {
     to { transform: rotate(360deg); }
 }
 
-/* --- Custom Glowing Button Styles (for Gallery Upload/Delete) --- */
 .glowing-btn {
     position: relative;
     background: linear-gradient(90deg, #1e3a8a, #3b82f6);
@@ -508,12 +475,10 @@ body {
     background: #374151; 
 }
 
-/* =========================================================
-    10. FOOTER
-========================================================= */
+/* --- FOOTER (CRITICAL FIX) --- */
 footer {
-    position: fixed;
-    bottom: 0;
+    /* FIX: Changed to relative so it flows *after* the contact section, allowing contact to be seen */
+    position: relative; 
     width: 100%;
     background: rgba(255, 255, 255, 0.05);
     color: #00bfff;
@@ -525,6 +490,7 @@ footer {
     box-shadow: 0 -1px 15px rgba(0, 191, 255, 0.3);
     animation: glowPulse 2.5s ease-in-out infinite alternate;
     z-index: 99; 
+    /* REMOVED: bottom: 0; */
 }
 
 @keyframes glowPulse {

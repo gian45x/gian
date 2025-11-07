@@ -1,6 +1,4 @@
 document.getElementById('delete-btn').addEventListener('click', function() {
-    // 1. Get the ID of the currently displayed image
-    // You must store the current image ID somewhere (e.g., in a data attribute on the image wrapper)
     const currentImageId = document.getElementById('gallery-container').dataset.currentId; 
 
     if (!currentImageId) {
