@@ -86,7 +86,7 @@ $images = $gallery->readAll();
             </p>
 
             <div class="btn-box">
-                <a href="#about" class="scroll-link">Show more...</a>
+                <a href="../showmoreHTML.html">Show more...</a>
             </div>
         </div>
 

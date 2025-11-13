@@ -1,0 +1,35 @@
+/* Custom dynamic background for the glassmorphism effect */
+body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, #1e3a8a, #06b6d4, #f97316);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Glassmorphism base class */
+.glass-card {
+    background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent white */
+    backdrop-filter: blur(10px); /* The key to glassmorphism */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Light border */
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37); /* Subtle shadow */
+}
+
+/* Styling for list items in the glass card */
+.list-item-glow {
+    transition: transform 0.2s, background-color 0.2s;
+}
+.list-item-glow:hover {
+    background-color: rgba(255, 255, 255, 0.15); /* Slightly brighter on hover */
+    transform: translateY(-2px);
+}
