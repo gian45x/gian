@@ -1,5 +1,4 @@
 <?php
-// Fetch gallery images directly from the database
 require_once __DIR__ . '/../admin/model/Gallery.php';
 
 $gallery = new Gallery();
@@ -45,10 +44,9 @@ $images = $gallery->readAll();
         body {
             font-family: 'Inter', sans-serif;
         }
-        /* Ensure all content sections stack correctly above the fixed video */
         #home, #about, #gallery, #contact {
             position: relative; 
-            z-index: 2; /* Content must be above video's z-index: -1 */
+            z-index: 2; 
         }
     </style>
 </head>
@@ -59,15 +57,17 @@ $images = $gallery->readAll();
         <source src="../assets/video/pinterest-video-39.mp4" type="video/mp4" />
     </video>
 
-    <header id="mainHeader">
-        <div class="logo">MY PORTFOLIO</div>
-        <nav>
-            <a href="#home">Home</a>
-            <a href="#about">About</a>
-            <a href="#gallery">Gallery</a>
-            <a href="#contact">Contact</a>
-        </nav>
-    </header>
+  <header id="mainHeader">
+    <div class="logo">MY PORTFOLIO</div>
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#gallery">Gallery</a>
+        <form id="logout-form" action="logout.php" method="POST" style="display:inline;">
+            <button type="submit" class="logout-btn">Log out</button>
+        </form>
+    </nav>
+</header>
 
     <button id="headerToggle" title="Show Menu">
         <i class="bx bx-menu"></i>
@@ -141,6 +141,7 @@ $images = $gallery->readAll();
 
     <section id="gallery" class="gallery-section">
         <h2 class="gallery-title">Gallery</h2>
+        
 
         <div class="section-content">
             <div class="gallery-grid">

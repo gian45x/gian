@@ -12,10 +12,44 @@ body {
     scroll-behavior: smooth;
     overflow-x: hidden;
     min-height: 100vh;
-    /* FIX: Changed from position: relative to static to ensure normal document flow */
     position: static; 
-    /* Removed padding-top: 100px; - we will use padding on the first section instead */
+   
 }
+
+
+.logout-btn:hover {
+   
+    background-color: #00e5ff; 
+    color: #111; 
+    transform: translateY(-3px) scale(1.05); 
+
+    
+    box-shadow: 
+        0 0 10px #00e5ff, 
+        0 0 25px rgba(0, 229, 255, 0.8), 
+        0 10px 30px rgba(0, 229, 255, 0.4); 
+    
+    z-index: 2;
+}
+
+.logout-btn:hover::before {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+}
+
+.logout-btn:active {
+ background: cyan;
+    color: #0a0a0a;
+    box-shadow: 0 0 20px cyan, 0 0 30px cyan;
+    transform: translateY(-3px);
+}
+
+
+/* Optional: To make the transition back instantaneous on release, you might tweak the transitions */
+.logout-btn:active {
+    transition: transform 0.05s ease-out, background-color 0.05s ease-out;
+}
+
 
 /* --- VIDEO BACKGROUND (Correct) --- */
 .vid {
@@ -475,9 +509,7 @@ header.hidden {
     background: #374151; 
 }
 
-/* --- FOOTER (CRITICAL FIX) --- */
 footer {
-    /* FIX: Changed to relative so it flows *after* the contact section, allowing contact to be seen */
     position: relative; 
     width: 100%;
     background: rgba(255, 255, 255, 0.05);
@@ -490,7 +522,6 @@ footer {
     box-shadow: 0 -1px 15px rgba(0, 191, 255, 0.3);
     animation: glowPulse 2.5s ease-in-out infinite alternate;
     z-index: 99; 
-    /* REMOVED: bottom: 0; */
 }
 
 @keyframes glowPulse {

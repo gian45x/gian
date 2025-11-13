@@ -81,32 +81,27 @@ function create($gallery)
  */
 function delete($gallery)
 {
-    header('Content-Type: application/json');
-
     $id = $_POST['id'] ?? null;
 
     if (empty($id) || !is_numeric($id)) {
-        http_response_code(400);
-        echo json_encode(['success' => false, 'error' => 'Invalid or missing image ID']);
-        exit;
+        die('Invalid or missing image ID');
     }
 
     try {
         $result = $gallery->delete((int)$id);
 
         if ($result) {
-            echo json_encode(['success' => true, 'message' => 'Image deleted successfully']);
+            // ✅ Redirect back to the gallery page after delete
+            header('Location: ../../website/index.php');
+            exit;
         } else {
-            http_response_code(500);
-            echo json_encode(['success' => false, 'error' => 'Database deletion failed']);
+            die('Database deletion failed');
         }
     } catch (Exception $e) {
-        http_response_code(500);
-        echo json_encode(['success' => false, 'error' => $e->getMessage()]);
+        die('Error: ' . $e->getMessage());
     }
-
-    exit;
 }
+
 
 /**
  * READ ALL Function: Retrieves all images for front-end display (used via AJAX).
