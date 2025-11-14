@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../admin/model/Gallery.php';
+require_once __DIR__ . '/admin/model/Gallery.php';
 
 $gallery = new Gallery();
 $images = $gallery->readAll(); 
@@ -12,10 +12,10 @@ $images = $gallery->readAll();
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Gian Albert's Portfolio</title>
 
-    <link rel="stylesheet" href="../assets/css/style.css" />
-    <link rel="stylesheet" href="../assets/css/about.css" />
-    <link rel="stylesheet" href="../assets/css/gallery.css" />
-    <link rel="stylesheet" href="../assets/css/contact.css" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/about.css" />
+    <link rel="stylesheet" href="assets/css/gallery.css" />
+    <link rel="stylesheet" href="assets/css/contact.css" />
 
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
     <link
@@ -54,7 +54,7 @@ $images = $gallery->readAll();
 <body class="vid" style="position: relative; z-index: 1;"> 
     
     <video autoplay muted loop playsinline style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1;">
-        <source src="../assets/video/pinterest-video-39.mp4" type="video/mp4" />
+        <source src="assets/video/pinterest-video-39.mp4" type="video/mp4" />
     </video>
 
   <header id="mainHeader">
@@ -86,13 +86,13 @@ $images = $gallery->readAll();
             </p>
 
             <div class="btn-box">
-                <a href="../showmoreHTML.html">Show more...</a>
+                <a href="website/showmoreHTML.html">Show more...</a>
             </div>
         </div>
 
         <div class="social-orbit-wrapper">
             <div class="profile-pic">
-                <img src="../assets/images/gianpic.jpg" alt="Profile Picture of Gian Albert" />
+                <img src="assets/images/gianpic.jpg" alt="Profile Picture of Gian Albert" />
             </div>
 
             <div id="orbit-center" class="orbit-container">
@@ -149,11 +149,11 @@ $images = $gallery->readAll();
                     <?php foreach ($images as $row): ?>
                         <div class="gallery-card">
                             <div class="gallery-image-wrapper">
-                                <img src="<?php echo '../' . htmlspecialchars($row['image_path']); ?>" alt="<?php echo htmlspecialchars($row['caption']); ?>">
+                                <img src="<?php echo '' . htmlspecialchars($row['image_path']); ?>" alt="<?php echo htmlspecialchars($row['caption']); ?>">
                             </div>
                             <div class="gallery-info">
                                 <p><?php echo htmlspecialchars($row['caption']); ?></p>
-                                <form action="../admin/controller/GalleryController.php?action=delete" method="POST" class="delete-form" onsubmit="return confirm('Delete this image?');">
+                                <form action="admin/controller/GalleryController.php?action=delete" method="POST" class="delete-form" onsubmit="return confirm('Delete this image?');">
                                     <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
                                     <button type="submit" class="btn-delete">Delete</button>
                                 </form>
@@ -167,7 +167,7 @@ $images = $gallery->readAll();
         </div>
 
         <div class="gallery-upload">
-            <form id="upload-form" action="../admin/controller/GalleryController.php?action=create" method="POST" enctype="multipart/form-data">
+            <form id="upload-form" action="admin/controller/GalleryController.php?action=create" method="POST" enctype="multipart/form-data">
                 <label for="image-file"><b>Select Image:</b></label>
                 <input type="file" name="image" id="image-file" required>
                 <input type="hidden" name="caption" value="New Gallery Image">
@@ -181,11 +181,11 @@ $images = $gallery->readAll();
             <p>&copy; 2024 Gian Albert Mendaro. All rights reserved.</p>
         </div>      
 </footer>
-    <script src="../assets/js/main.js"></script>
-    <script src="../assets/js/script.js"></script>
-    <script src="../assets/js/gallery.js"></script>
-    <script src="../assets/js/header.js"></script>
-    <script src="../assets/js/delete.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/script.js"></script>
+    <script src="assets/js/gallery.js"></script>
+    <script src="assets/js/header.js"></script>
+    <script src="assets/js/delete.js"></script>
 
 </body>
 </html>

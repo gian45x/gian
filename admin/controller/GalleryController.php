@@ -92,7 +92,7 @@ function delete($gallery)
 
         if ($result) {
             // ✅ Redirect back to the gallery page after delete
-            header('Location: ../../website/index.php');
+            header('Location: ../../index.php');
             exit;
         } else {
             die('Database deletion failed');
