@@ -1,0 +1,9 @@
+[package]
+name = "my-api"
+version = "0.1.0"
+
+[dependencies]
+"wasi:http/proxy" = "0.2.0"
+
+[http]
+entrypoint = "target/wasm32-wasip1/release/my_api.wasm"
