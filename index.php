@@ -139,7 +139,7 @@ $images = $gallery->readAll();
         </div>
     </section>
 
-    <section id="gallery" class="gallery-section">
+<section id="gallery" class="gallery-section">
         <h2 class="gallery-title">Gallery</h2>
         
 
@@ -149,10 +149,21 @@ $images = $gallery->readAll();
                     <?php foreach ($images as $row): ?>
                         <div class="gallery-card">
                             <div class="gallery-image-wrapper">
-                                <img src="<?php echo '' . htmlspecialchars($row['image_path']); ?>" alt="<?php echo htmlspecialchars($row['caption']); ?>">
+                                <img src="<?php echo htmlspecialchars($row['image_path']); ?>" alt="<?php echo htmlspecialchars($row['caption']); ?>">
                             </div>
                             <div class="gallery-info">
-                                <p><?php echo htmlspecialchars($row['caption']); ?></p>
+                                <p id="caption-<?php echo $row['id']; ?>"><?php echo htmlspecialchars($row['caption']); ?></p>
+
+                                <button 
+                                    class="btn-edit" 
+                                    data-id="<?php echo $row['id']; ?>"
+                                    data-caption="<?php echo htmlspecialchars($row['caption']); ?>"
+                                    data-toggle="modal" 
+                                    data-target="#editImageModal"
+                                >
+                                    Edit
+                                </button>
+                                
                                 <form action="admin/controller/GalleryController.php?action=delete" method="POST" class="delete-form" onsubmit="return confirm('Delete this image?');">
                                     <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
                                     <button type="submit" class="btn-delete">Delete</button>
@@ -170,11 +181,31 @@ $images = $gallery->readAll();
             <form id="upload-form" action="admin/controller/GalleryController.php?action=create" method="POST" enctype="multipart/form-data">
                 <label for="image-file"><b>Select Image:</b></label>
                 <input type="file" name="image" id="image-file" required>
-                <input type="hidden" name="caption" value="New Gallery Image">
+                <input type="hidden" name="caption" value="New Gallery Image"> 
                 <button class="btn-glow upload" type="submit">Upload Image</button>
             </form>
         </div>
-    </section>
+</section>
+
+<div id="editImageModal" class="modal" style="display:none;">
+    <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <h3>Replace Gallery Image</h3>
+        
+        <form action="admin/controller/GalleryController.php?action=edit" method="POST" enctype="multipart/form-data">
+            
+            <input type="hidden" name="id" id="edit-image-id">
+            
+            <input type="hidden" name="caption" id="edit-caption-placeholder">
+            
+            <label for="edit-image-file"><b>Select New Image to Replace:</b></label>
+            <input type="file" name="image" id="edit-image-file" required><br><br>
+            
+            <button type="submit" class="btn-glow">Replace Image</button>
+        </form>
+    </div>
+</div>
+
     
 <footer>
         <div class="footer-content">
@@ -186,6 +217,7 @@ $images = $gallery->readAll();
     <script src="assets/js/gallery.js"></script>
     <script src="assets/js/header.js"></script>
     <script src="assets/js/delete.js"></script>
+    <script src="assets/js/update.js"></script>
 
 </body>
 </html>

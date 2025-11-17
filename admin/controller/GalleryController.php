@@ -13,6 +13,9 @@ switch ($action) {
     case 'create':
         create($gallery);
         break;
+    case 'edit':
+        edit($gallery); // <-- New case for the edit function
+        break;
     case 'delete':
         delete($gallery);
         break;
@@ -77,6 +80,78 @@ function create($gallery)
 }
 
 /**
+ * EDIT Function: Updates the image record (caption and/or file) in the DB and server.
+ */
+function edit($gallery)
+{
+    if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+        // Not a POST request, redirect or show error
+        header('Location: ' . ($_SERVER['HTTP_REFERER'] ?? '../../admin/index.php') . '?error=invalid_method');
+        exit;
+    }
+
+    $id = $_POST['id'] ?? null;
+    $caption = $_POST['caption'] ?? null;
+
+    if (empty($id) || !is_numeric($id)) {
+        die('Invalid or missing image ID for edit');
+    }
+
+    $data = [
+        'id'      => (int)$id,
+        'caption' => $caption,
+        'image_path' => null // Will be updated if a new file is uploaded
+    ];
+
+    // --- Handle File Upload (Optional) ---
+    if (!empty($_FILES['image']['tmp_name'])) {
+        
+        $targetDir = __DIR__ . '/../../uploads/';
+        
+        if (!file_exists($targetDir)) {
+            mkdir($targetDir, 0777, true);
+        }
+        
+        $fileName = time() . '_' . basename($_FILES['image']['name']); 
+        $filePath = $targetDir . $fileName;
+        
+        if (move_uploaded_file($_FILES['image']['tmp_name'], $filePath)) {
+            
+            // 🚨 REPLACED SECTION: Delete the old file from the server
+            // The Model handles reading the old path and deleting the file based on the ID.
+            $gallery->deleteOldFile((int)$id); 
+            
+            // New path for the DB
+            $data['image_path'] = 'uploads/' . $fileName;
+            
+        } else {
+            header('Location: ' . ($_SERVER['HTTP_REFERER'] ?? '../../admin/index.php') . '?error=upload_failed_edit');
+            exit;
+        }
+    }
+
+    // --- Update DB Record ---
+    try {
+        $result = $gallery->update($data); // Assumes you have an update method in your Gallery Model
+
+        if ($result) {
+            // Redirect back to the originating page
+            if (!empty($_SERVER['HTTP_REFERER'])) {
+                header('Location: ' . $_SERVER['HTTP_REFERER'] . '?success=edit');
+            } else {
+                header('Location: ../../admin/index.php?success=edit');
+            }
+            exit;
+        } else {
+            die('Database update failed (No changes or error)');
+        }
+    } catch (Exception $e) {
+        die('Error: ' . $e->getMessage());
+    }
+}
+
+
+/**
  * DELETE Function: Deletes image record from DB and the file from the server.
  */
 function delete($gallery)
@@ -121,4 +196,3 @@ function readAll($gallery)
     echo json_encode(['data' => $formatted_images]);
     exit;
 }
-?>
